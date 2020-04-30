@@ -1,0 +1,7 @@
+C:\Users\Cedrick\source\repos\ChessConsole\ChessConsole\bin\Debug\ChessConsole.exe.config
+C:\Users\Cedrick\source\repos\ChessConsole\ChessConsole\bin\Debug\ChessConsole.exe
+C:\Users\Cedrick\source\repos\ChessConsole\ChessConsole\bin\Debug\ChessConsole.pdb
+C:\Users\Cedrick\source\repos\ChessConsole\ChessConsole\obj\Debug\ChessConsole.csprojAssemblyReference.cache
+C:\Users\Cedrick\source\repos\ChessConsole\ChessConsole\obj\Debug\ChessConsole.csproj.CoreCompileInputs.cache
+C:\Users\Cedrick\source\repos\ChessConsole\ChessConsole\obj\Debug\ChessConsole.exe
+C:\Users\Cedrick\source\repos\ChessConsole\ChessConsole\obj\Debug\ChessConsole.pdb
