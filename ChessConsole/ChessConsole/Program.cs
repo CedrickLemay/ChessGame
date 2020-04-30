@@ -37,43 +37,43 @@ namespace ChessConsole
         {
 
             bool isWhite = false;
-            for (var j = 0; j < 2; j++)
+            for (byte j = 0; j < 2; j++)
             {
                 //Pawn
-                for (var i = 0; i < 8; i++)
+                for (byte i = 0; i < 8; i++)
                 {
-                    board[(j * 5) + 1, i] = new Space(new Pawn(isWhite));
+                    board[(j * 5) + 1, i] = new Space(new Pawn(isWhite),Convert.ToByte((j * 5) + 1), i);
                 }
 
                    //the empty spaces
                     //SWITCH THE ARRAY TO AN ARRAY OF SPACES. SPACES WOULD CONTAIN POSSIBLE PIECES.
 
                 //Rook
-                board[(j * 7), 0] = new Space(new Rook(isWhite));
-                board[(j * 7), 7] = new Space(new Rook(isWhite));
+                board[(j * 7), 0] = new Space(new Rook(isWhite), Convert.ToByte(j * 7), 0);
+                board[(j * 7), 7] = new Space(new Rook(isWhite), Convert.ToByte(j * 7), 7);
 
                 //Knight
-                board[(j * 7), 1] = new Space(new Knight(isWhite));
-                board[(j * 7), 6] = new Space(new Knight(isWhite));
+                board[(j * 7), 1] = new Space(new Knight(isWhite), Convert.ToByte(j * 7), 1);
+                board[(j * 7), 6] = new Space(new Knight(isWhite), Convert.ToByte(j * 7), 6);
 
                 //Bishop
-                board[(j * 7), 2] = new Space(new Bishop(isWhite));
-                board[(j * 7), 5] = new Space(new Bishop(isWhite));
+                board[(j * 7), 2] = new Space(new Bishop(isWhite), Convert.ToByte(j * 7), 2);
+                board[(j * 7), 5] = new Space(new Bishop(isWhite), Convert.ToByte(j * 7), 5);
 
                 //Queen
-                board[(j * 7), 3] = new Space(new Queen(isWhite));
+                board[(j * 7), 3] = new Space(new Queen(isWhite), Convert.ToByte(j * 7), 3);
 
                 //King
-                board[(j * 7), 4] = new Space(new King(isWhite));
+                board[(j * 7), 4] = new Space(new King(isWhite), Convert.ToByte(j * 7), 4);
 
                 isWhite = true;
             }
 
-            for (var i = 0; i < 4; i++)
+            for (byte i = 0; i < 4; i++)
             {
-                for (var j = 0; j < 8; j++)
+                for (byte j = 0; j < 8; j++)
                 {
-                    board[2 + i, j] = new Space();
+                    board[2 + i, j] = new Space(Convert.ToByte(2 + i), j);
                 }
                 
             }
@@ -85,17 +85,23 @@ namespace ChessConsole
     public class Space
     {
         private Piece piece;
+        private byte posX;
+        private byte posY;
 
         public Piece Piece { get => piece; set => piece = value; }
 
-        public Space()
+        public Space(byte posX, byte posY)
         {
             piece = null;
+            this.posX = posX;
+            this.posY = posY;
         }
 
-        public Space(Piece p)
+        public Space(Piece p, byte posX, byte posY)
         {
             piece = p;
+            this.posX = posX;
+            this.posY = posY;
         }
     }
 
