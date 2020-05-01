@@ -5,3 +5,10 @@ C:\Users\Cedrick\source\repos\ChessConsole\ChessConsole\obj\Debug\ChessConsole.c
 C:\Users\Cedrick\source\repos\ChessConsole\ChessConsole\obj\Debug\ChessConsole.csproj.CoreCompileInputs.cache
 C:\Users\Cedrick\source\repos\ChessConsole\ChessConsole\obj\Debug\ChessConsole.exe
 C:\Users\Cedrick\source\repos\ChessConsole\ChessConsole\obj\Debug\ChessConsole.pdb
+D:\GitRepo\ChessGame\ChessConsole\ChessConsole\bin\Debug\ChessConsole.exe.config
+D:\GitRepo\ChessGame\ChessConsole\ChessConsole\bin\Debug\ChessConsole.exe
+D:\GitRepo\ChessGame\ChessConsole\ChessConsole\bin\Debug\ChessConsole.pdb
+D:\GitRepo\ChessGame\ChessConsole\ChessConsole\obj\Debug\ChessConsole.csprojAssemblyReference.cache
+D:\GitRepo\ChessGame\ChessConsole\ChessConsole\obj\Debug\ChessConsole.csproj.CoreCompileInputs.cache
+D:\GitRepo\ChessGame\ChessConsole\ChessConsole\obj\Debug\ChessConsole.exe
+D:\GitRepo\ChessGame\ChessConsole\ChessConsole\obj\Debug\ChessConsole.pdb
