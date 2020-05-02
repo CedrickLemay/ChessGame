@@ -18,6 +18,7 @@ namespace ChessConsole
         public virtual void Afficher() { } //test
 
         public virtual ArrayList GetPossibleMoves() { return null; }
+
     }
 
     public class Queen : Piece
@@ -30,6 +31,12 @@ namespace ChessConsole
         {
             Console.Write('Q');
         }
+
+        public override ArrayList GetPossibleMoves()
+        {
+            return null;
+        }
+
     }
 
     public class King : Piece

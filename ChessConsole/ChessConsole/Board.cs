@@ -74,5 +74,12 @@ namespace ChessConsole
                 Console.WriteLine();
             }
         }
+
+
+        public static void Move(int ox, int oy, int nx, int ny) 
+        {
+            board[nx, ny].Piece = board[ox, oy].Piece;
+            board[ox, oy].Piece = null;
+        }
     }
 }
