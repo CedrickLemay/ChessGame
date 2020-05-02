@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,8 @@ namespace ChessConsole
         public Piece(bool isWhite) { this.isWhite = isWhite; }
 
         public virtual void Afficher() { } //test
+
+        public virtual ArrayList GetPossibleMoves() { return null; }
     }
 
     public class Queen : Piece
