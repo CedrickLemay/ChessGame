@@ -81,5 +81,10 @@ namespace ChessConsole
             board[nx, ny].Piece = board[ox, oy].Piece;
             board[ox, oy].Piece = null;
         }
+
+        internal static Piece GetSpacePiece(int x, int y)
+        {
+            return board[x, y].Piece;
+        }
     }
 }

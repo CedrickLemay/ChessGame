@@ -17,7 +17,7 @@ namespace ChessConsole
 
         public virtual void Afficher() { } //test
 
-        public virtual ArrayList GetPossibleMoves() { return null; }
+        public virtual ArrayList GetPossibleMoves(int x, int y) { return null; }
 
     }
 
@@ -32,7 +32,7 @@ namespace ChessConsole
             Console.Write('Q');
         }
 
-        public override ArrayList GetPossibleMoves()
+        public override ArrayList GetPossibleMoves(int x, int y)
         {
             return null;
         }
@@ -49,6 +49,11 @@ namespace ChessConsole
         {
             Console.Write('K');
         }
+
+        public override ArrayList GetPossibleMoves(int x, int y)
+        {
+            return null;
+        }
     }
 
     public class Rook : Piece
@@ -60,6 +65,11 @@ namespace ChessConsole
         {
             Console.Write('R');
         }
+
+        public override ArrayList GetPossibleMoves(int x, int y)
+        {
+            return null;
+        }
     }
 
     public class Knight : Piece
@@ -70,6 +80,10 @@ namespace ChessConsole
         public override void Afficher()
         {
             Console.Write('K');
+        }
+        public override ArrayList GetPossibleMoves(int x, int y)
+        {
+            return null;
         }
     }
 
@@ -83,6 +97,10 @@ namespace ChessConsole
         {
             Console.Write('B');
         }
+        public override ArrayList GetPossibleMoves(int x, int y)
+        {
+            return null;
+        }
     }
 
     public class Pawn : Piece
@@ -93,6 +111,28 @@ namespace ChessConsole
         public override void Afficher()
         {
             Console.Write('P');
+        }
+        public override ArrayList GetPossibleMoves(int x, int y)
+        {
+
+            ArrayList possibleMoves = new ArrayList();
+
+
+
+            int ny = (Convert.ToInt32(IsWhite) * -1) * 1 + y;   //Position in front of him. (True = 1)
+
+            if (Board.GetSpacePiece(x, ny).IsWhite == this.IsWhite) 
+                
+            //Position in diagonal in front of him to check if there is enemy.
+            if (Board.GetSpacePiece(x + 1, ny).IsWhite != this.IsWhite)
+            
+            if (Board.GetSpacePiece(x - 1, ny).IsWhite != this.IsWhite)
+
+
+
+            // todo: changer tout les x y pour point PARTOUT
+                   
+                    
         }
     }
 }

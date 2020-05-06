@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,13 @@ namespace ChessConsole
             piece = null;
             this.posX = posX;
             this.posY = posY;
+        }
+
+        public ArrayList GetPossibleMoves()
+        {
+            if (piece == null) return null;
+
+            return piece.GetPossibleMoves();
         }
 
         public Space(Piece p, byte posX, byte posY)

@@ -12,3 +12,10 @@ D:\GitRepo\ChessGame\ChessConsole\ChessConsole\obj\Debug\ChessConsole.csprojAsse
 D:\GitRepo\ChessGame\ChessConsole\ChessConsole\obj\Debug\ChessConsole.csproj.CoreCompileInputs.cache
 D:\GitRepo\ChessGame\ChessConsole\ChessConsole\obj\Debug\ChessConsole.exe
 D:\GitRepo\ChessGame\ChessConsole\ChessConsole\obj\Debug\ChessConsole.pdb
+E:\GitKrakenRepo\ChessGame\ChessConsole\ChessConsole\bin\Debug\ChessConsole.exe.config
+E:\GitKrakenRepo\ChessGame\ChessConsole\ChessConsole\bin\Debug\ChessConsole.exe
+E:\GitKrakenRepo\ChessGame\ChessConsole\ChessConsole\bin\Debug\ChessConsole.pdb
+E:\GitKrakenRepo\ChessGame\ChessConsole\ChessConsole\obj\Debug\ChessConsole.csprojAssemblyReference.cache
+E:\GitKrakenRepo\ChessGame\ChessConsole\ChessConsole\obj\Debug\ChessConsole.csproj.CoreCompileInputs.cache
+E:\GitKrakenRepo\ChessGame\ChessConsole\ChessConsole\obj\Debug\ChessConsole.exe
+E:\GitKrakenRepo\ChessGame\ChessConsole\ChessConsole\obj\Debug\ChessConsole.pdb
