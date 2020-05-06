@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Drawing;
 
 namespace ChessConsole
 {
@@ -20,39 +17,44 @@ namespace ChessConsole
                 //Pawn
                 for (byte i = 0; i < 8; i++)
                 {
-                    board[(j * 5) + 1, i] = new Space(new Pawn(isWhite), Convert.ToByte((j * 5) + 1), i);
+                    board[(j * 5) + 1, i] = new Space(new Pawn(isWhite), new Point(((j * 5) + 1), i));
                 }
 
                 //Rook
-                board[(j * 7), 0] = new Space(new Rook(isWhite), Convert.ToByte(j * 7), 0);
-                board[(j * 7), 7] = new Space(new Rook(isWhite), Convert.ToByte(j * 7), 7);
+                board[(j * 7), 0] = new Space(new Rook(isWhite), new Point((j * 7), 0));
+                board[(j * 7), 7] = new Space(new Rook(isWhite), new Point((j * 7), 7));
 
                 //Knight
-                board[(j * 7), 1] = new Space(new Knight(isWhite), Convert.ToByte(j * 7), 1);
-                board[(j * 7), 6] = new Space(new Knight(isWhite), Convert.ToByte(j * 7), 6);
+                board[(j * 7), 1] = new Space(new Knight(isWhite), new Point((j * 7), 1));
+                board[(j * 7), 6] = new Space(new Knight(isWhite), new Point((j * 7), 6));
 
                 //Bishop
-                board[(j * 7), 2] = new Space(new Bishop(isWhite), Convert.ToByte(j * 7), 2);
-                board[(j * 7), 5] = new Space(new Bishop(isWhite), Convert.ToByte(j * 7), 5);
+                board[(j * 7), 2] = new Space(new Bishop(isWhite), new Point((j * 7), 2));
+                board[(j * 7), 5] = new Space(new Bishop(isWhite), new Point((j * 7), 5));
 
                 //Queen
-                board[(j * 7), 3] = new Space(new Queen(isWhite), Convert.ToByte(j * 7), 3);
+                board[(j * 7), 3] = new Space(new Queen(isWhite), new Point((j * 7), 3));
 
                 //King
-                board[(j * 7), 4] = new Space(new King(isWhite), Convert.ToByte(j * 7), 4);
+                board[(j * 7), 4] = new Space(new King(isWhite), new Point((j * 7), 4));
 
-                isWhite = true;
+            isWhite = true;
             }
 
             for (byte i = 0; i < 4; i++)
             {
                 for (byte j = 0; j < 8; j++)
                 {
-                    board[2 + i, j] = new Space(Convert.ToByte(2 + i), j);
+                    board[2 + i, j] = new Space(new Point(2 + i, j));
                 }
 
             }
 
+        }
+
+        public static Space GetSpace(Point p)
+        {
+            return board[p.X, p.Y];
         }
 
         public static void Show()
@@ -76,15 +78,15 @@ namespace ChessConsole
         }
 
 
-        public static void Move(int ox, int oy, int nx, int ny) 
+        public static void Move(Point oldPos, Point newPos) 
         {
-            board[nx, ny].Piece = board[ox, oy].Piece;
-            board[ox, oy].Piece = null;
+            board[newPos.X, newPos.Y].Piece = board[oldPos.X, oldPos.Y].Piece;
+            board[oldPos.X, oldPos.Y].Piece = null;
         }
 
-        internal static Piece GetSpacePiece(int x, int y)
+        internal static Piece GetSpacePiece(Point pos)
         {
-            return board[x, y].Piece;
+            return board[pos.X, pos.Y].Piece;
         }
     }
 }

@@ -1,40 +1,34 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections;
+using System.Drawing;
 
 namespace ChessConsole
 {
     public class Space
     {
         private Piece piece;
-        private byte posX;
-        private byte posY;
+        private Point position;
 
         public Piece Piece { get => piece; set => piece = value; }
 
-        public Space(byte posX, byte posY)
+        public Space(Point pos)
         {
             piece = null;
-            this.posX = posX;
-            this.posY = posY;
+            this.position = pos;
+        }
+
+        public Space(Piece p, Point pos)
+        {
+            piece = p;
+            this.position = pos;
         }
 
         public ArrayList GetPossibleMoves()
         {
             if (piece == null) return null;
 
-            return piece.GetPossibleMoves();
+            return piece.GetPossibleMoves(position);
         }
 
-        public Space(Piece p, byte posX, byte posY)
-        {
-            piece = p;
-            this.posX = posX;
-            this.posY = posY;
-        }
     }
 
 }

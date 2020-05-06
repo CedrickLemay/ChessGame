@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Drawing;
 
 namespace ChessConsole
 {
@@ -17,7 +14,7 @@ namespace ChessConsole
 
         public virtual void Afficher() { } //test
 
-        public virtual ArrayList GetPossibleMoves(int x, int y) { return null; }
+        public virtual ArrayList GetPossibleMoves(Point pos) { return null; }
 
     }
 
@@ -32,7 +29,7 @@ namespace ChessConsole
             Console.Write('Q');
         }
 
-        public override ArrayList GetPossibleMoves(int x, int y)
+        public override ArrayList GetPossibleMoves(Point pos)
         {
             return null;
         }
@@ -50,7 +47,7 @@ namespace ChessConsole
             Console.Write('K');
         }
 
-        public override ArrayList GetPossibleMoves(int x, int y)
+        public override ArrayList GetPossibleMoves(Point pos)
         {
             return null;
         }
@@ -66,7 +63,7 @@ namespace ChessConsole
             Console.Write('R');
         }
 
-        public override ArrayList GetPossibleMoves(int x, int y)
+        public override ArrayList GetPossibleMoves(Point pos)
         {
             return null;
         }
@@ -81,7 +78,7 @@ namespace ChessConsole
         {
             Console.Write('K');
         }
-        public override ArrayList GetPossibleMoves(int x, int y)
+        public override ArrayList GetPossibleMoves(Point pos)
         {
             return null;
         }
@@ -97,7 +94,7 @@ namespace ChessConsole
         {
             Console.Write('B');
         }
-        public override ArrayList GetPossibleMoves(int x, int y)
+        public override ArrayList GetPossibleMoves(Point pos)
         {
             return null;
         }
@@ -112,27 +109,37 @@ namespace ChessConsole
         {
             Console.Write('P');
         }
-        public override ArrayList GetPossibleMoves(int x, int y)
+        public override ArrayList GetPossibleMoves(Point pos)
         {
 
             ArrayList possibleMoves = new ArrayList();
 
+            Point verifPos; //Point used to verify
 
-
-            int ny = (Convert.ToInt32(IsWhite) * -1) * 1 + y;   //Position in front of him. (True = 1)
-
-            if (Board.GetSpacePiece(x, ny).IsWhite == this.IsWhite) 
-                
-            //Position in diagonal in front of him to check if there is enemy.
-            if (Board.GetSpacePiece(x + 1, ny).IsWhite != this.IsWhite)
             
-            if (Board.GetSpacePiece(x - 1, ny).IsWhite != this.IsWhite)
+            int nx = (Convert.ToInt32(IsWhite) * -1) * 1 + pos.X;   //Position in front of him. (True = 1)
+            verifPos = new Point(nx, pos.Y);
+
+            if (Board.GetSpacePiece(verifPos) == null)
+                possibleMoves.Add(verifPos);
+
+            //Position in diagonal in front of him to check if there is enemy.
+            int ny = pos.Y + 1;
+            verifPos = new Point(nx, ny);
+            if (Board.GetSpacePiece(verifPos) != null && Board.GetSpacePiece(verifPos).IsWhite != this.IsWhite)
+                possibleMoves.Add(verifPos);
+
+
+            ny = pos.Y - 1;
+            verifPos = new Point(nx, ny);
+            if (Board.GetSpacePiece(verifPos) != null && Board.GetSpacePiece(verifPos).IsWhite != this.IsWhite)
+                possibleMoves.Add(verifPos);
+
+
+            return possibleMoves;
 
 
 
-            // todo: changer tout les x y pour point PARTOUT
-                   
-                    
         }
     }
 }
