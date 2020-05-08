@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Drawing;
+using System.Linq;
 
 namespace ChessConsole
 {
@@ -49,7 +50,30 @@ namespace ChessConsole
 
         public override ArrayList GetPossibleMoves(Point pos)
         {
-            return null;
+            ArrayList possibleMoves = new ArrayList();
+            Point p;
+
+            for (int i = -1; i <= 1; i++)
+            {
+                for (int j = -1; j <= 1; j++)
+                {
+                    try
+                    {
+                        p = new Point(pos.X + i, pos.Y + j);
+
+                        if (Board.GetSpacePiece(p) == null || Board.GetSpacePiece(p).IsWhite != this.IsWhite)
+                            possibleMoves.Add(p);
+                    }
+                    catch (System.IndexOutOfRangeException e)
+                    {
+                        continue;
+                    }
+                    
+                }
+            }
+             
+            return possibleMoves;
+
         }
     }
 
@@ -65,6 +89,20 @@ namespace ChessConsole
 
         public override ArrayList GetPossibleMoves(Point pos)
         {
+            bool[] stopVerif = Enumerable.Repeat(false,4).ToArray(); //that's fuck ugly .... need to change.
+
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    if (stopVerif[j]) continue;
+
+
+                }
+
+                if (stopVerif.All(v => v == false)) break;
+            }
+
             return null;
         }
     }
@@ -117,7 +155,7 @@ namespace ChessConsole
             Point verifPos; //Point used to verify
 
             
-            int nx = (Convert.ToInt32(IsWhite) * -1) * 1 + pos.X;   //Position in front of him. (True = 1)
+            int nx = ( IsWhite ? -1 : 1) * 1 + pos.X;
             verifPos = new Point(nx, pos.Y);
 
             if (Board.GetSpacePiece(verifPos) == null)
@@ -137,9 +175,6 @@ namespace ChessConsole
 
 
             return possibleMoves;
-
-
-
         }
     }
 }

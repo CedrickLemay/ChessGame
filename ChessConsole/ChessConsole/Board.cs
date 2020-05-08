@@ -50,6 +50,7 @@ namespace ChessConsole
 
             }
 
+            board[4, 4] = new Space(new King(isWhite), new Point(4,4));
         }
 
         public static Space GetSpace(Point p)
