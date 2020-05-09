@@ -89,21 +89,55 @@ namespace ChessConsole
 
         public override ArrayList GetPossibleMoves(Point pos)
         {
+            ArrayList possibleMoves = new ArrayList();
+
             bool[] stopVerif = Enumerable.Repeat(false,4).ToArray(); //that's fuck ugly .... need to change.
 
-            for (int i = 0; i < 8; i++)
+            int nx, ny;
+            Point nPos;
+
+            for (int i = 1; i < 7; i++)
             {
                 for (int j = 0; j < 4; j++)
                 {
-                    if (stopVerif[j]) continue;
+                    if (stopVerif[j]) continue;                    
+                    //      at 0, we look up
+                    //      at 1, we look left
+                    //      at 2, we look down
+                    //      at 3, we look rigth
 
+                    nx = ((j + 1) % 2) * (j - 1) * i; 
+                    ny = (j % 2) * (j - 2) * i;
+
+
+                    nPos = new Point(pos.X + nx, pos.Y + ny);
+
+                    try
+                    {
+                        Board.GetSpacePiece(nPos);
+                    }
+                    catch (System.IndexOutOfRangeException e)
+                    {
+                        stopVerif[j] = true;
+                        continue;
+                    }
+
+                    if (Board.GetSpacePiece(nPos) == null)
+                        possibleMoves.Add(nPos);
+                    else if (Board.GetSpacePiece(nPos).IsWhite != this.IsWhite)
+                    {
+                        possibleMoves.Add(nPos);
+                        stopVerif[j] = true;
+                    }                    
+                    else if (Board.GetSpacePiece(nPos).IsWhite == this.IsWhite)
+                        stopVerif[j] = true;
 
                 }
 
-                if (stopVerif.All(v => v == false)) break;
+                if (stopVerif.All(v => v == true)) break;
             }
 
-            return null;
+            return possibleMoves;
         }
     }
 

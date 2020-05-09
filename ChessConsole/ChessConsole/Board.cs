@@ -50,7 +50,7 @@ namespace ChessConsole
 
             }
 
-            board[4, 4] = new Space(new King(isWhite), new Point(4,4));
+            board[4, 4] = new Space(new Rook(isWhite), new Point(4,4));
         }
 
         public static Space GetSpace(Point p)
@@ -61,7 +61,7 @@ namespace ChessConsole
         public static void Show()
         {
             //afficher le board en console
-            Console.WriteLine("  0 1 2 3 4 5 6 7");
+            Console.WriteLine("  0 1 2 3 4 5 6 7  Y");
             for (var i = 0; i < 8; i++)
             {
                 Console.Write(i + " ");
@@ -74,8 +74,9 @@ namespace ChessConsole
 
                     Console.Write(' ');
                 }
-                Console.WriteLine();
+                Console.WriteLine();                
             }
+            Console.WriteLine('X');
         }
 
 
