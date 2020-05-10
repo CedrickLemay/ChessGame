@@ -168,6 +168,11 @@ namespace ChessConsole
         }
         public override ArrayList GetPossibleMoves(Point pos)
         {
+            ArrayList possibleMoves = new ArrayList();
+            Point verifPos;
+            int nx, ny;
+
+
             return null;
         }
     }
@@ -188,24 +193,37 @@ namespace ChessConsole
 
             Point verifPos; //Point used to verify
 
+            int nx, ny;
             
-            int nx = ( IsWhite ? -1 : 1) * 1 + pos.X;
+            nx = ( IsWhite ? -1 : 1) * 1 + pos.X;
             verifPos = new Point(nx, pos.Y);
+            try
+            {
+                if (Board.GetSpacePiece(verifPos) == null)
+                    possibleMoves.Add(verifPos);
+            }
+            catch (System.IndexOutOfRangeException e) { }
 
-            if (Board.GetSpacePiece(verifPos) == null)
-                possibleMoves.Add(verifPos);
 
             //Position in diagonal in front of him to check if there is enemy.
-            int ny = pos.Y + 1;
+            ny = pos.Y + 1;
             verifPos = new Point(nx, ny);
-            if (Board.GetSpacePiece(verifPos) != null && Board.GetSpacePiece(verifPos).IsWhite != this.IsWhite)
-                possibleMoves.Add(verifPos);
+            try
+            {
+                if (Board.GetSpacePiece(verifPos) != null && Board.GetSpacePiece(verifPos).IsWhite != this.IsWhite)
+                    possibleMoves.Add(verifPos);
+            }
+            catch (System.IndexOutOfRangeException e) { }
 
 
             ny = pos.Y - 1;
             verifPos = new Point(nx, ny);
-            if (Board.GetSpacePiece(verifPos) != null && Board.GetSpacePiece(verifPos).IsWhite != this.IsWhite)
-                possibleMoves.Add(verifPos);
+            try
+            {
+                if (Board.GetSpacePiece(verifPos) != null && Board.GetSpacePiece(verifPos).IsWhite != this.IsWhite)
+                    possibleMoves.Add(verifPos);
+            }
+            catch (System.IndexOutOfRangeException e) { }
 
 
             return possibleMoves;
