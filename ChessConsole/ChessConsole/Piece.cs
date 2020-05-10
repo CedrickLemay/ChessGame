@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 
 namespace ChessConsole
@@ -152,7 +153,33 @@ namespace ChessConsole
         }
         public override ArrayList GetPossibleMoves(Point pos)
         {
-            return null;
+            ArrayList possibleMoves = new ArrayList();
+            Point verifPos;
+            int nx, ny;
+
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 3; j+=2)
+                {
+                    nx = ((i + 1) % 2) * (i - 1) * 2 + (i % 2) * (j - 1);
+                    ny = (i % 2) * (i - 2) * 2 + ((i + 1) % 2) * (j - 1);
+
+                    verifPos = new Point(pos.X + nx, pos.Y + ny);
+
+                    try 
+                    {
+                        if(Board.GetSpacePiece(verifPos) == null || Board.GetSpacePiece(verifPos).IsWhite != this.IsWhite)
+                            possibleMoves.Add(verifPos);
+                    }
+                    catch (System.IndexOutOfRangeException e) 
+                    {
+                        Console.WriteLine("Test: {0} {1}", verifPos.X, verifPos.Y);
+                    }
+                }                
+            }
+
+
+            return possibleMoves;
         }
     }
 
