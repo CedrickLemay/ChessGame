@@ -92,7 +92,7 @@ namespace ChessConsole
         {
             ArrayList possibleMoves = new ArrayList();
 
-            bool[] stopVerif = Enumerable.Repeat(false,4).ToArray(); //that's fuck ugly .... need to change.
+            bool[] stopVerif = Enumerable.Repeat(false,4).ToArray(); 
 
             int nx, ny;
             Point nPos;
@@ -171,10 +171,7 @@ namespace ChessConsole
                         if(Board.GetSpacePiece(verifPos) == null || Board.GetSpacePiece(verifPos).IsWhite != this.IsWhite)
                             possibleMoves.Add(verifPos);
                     }
-                    catch (System.IndexOutOfRangeException e) 
-                    {
-                        Console.WriteLine("Test: {0} {1}", verifPos.X, verifPos.Y);
-                    }
+                    catch (System.IndexOutOfRangeException e){}
                 }                
             }
 
@@ -198,9 +195,50 @@ namespace ChessConsole
             ArrayList possibleMoves = new ArrayList();
             Point verifPos;
             int nx, ny;
+            bool[] stopVerif = Enumerable.Repeat(false, 4).ToArray();
+            int verif_i;
 
+            //ew... O(n3) ... ew...
+            for (int i = 1; i < 7; i++)
+            {
+                for (int j = -1; j <= 1; j+=2)
+                {
+                    for (int k = -1; k <= 1; k += 2)
+                    {
+                        verif_i = (j + 1) + ((k + 1) / 2);
 
-            return null;
+                        if (stopVerif[verif_i] == true) continue;
+
+                        nx = pos.X + (i * j);
+                        ny = pos.Y + (i * k);
+
+                        verifPos = new Point(nx, ny);
+
+                        try
+                        {
+                            Board.GetSpacePiece(verifPos);
+                        }
+                        catch (System.IndexOutOfRangeException e)
+                        {
+                            stopVerif[verif_i] = true;
+                            continue;
+                        }
+
+                        if (Board.GetSpacePiece(verifPos) == null)
+                            possibleMoves.Add(verifPos);
+                        else if (Board.GetSpacePiece(verifPos).IsWhite != this.IsWhite)
+                        {
+                            possibleMoves.Add(verifPos);
+                            stopVerif[verif_i] = true;
+                        }
+                        else if (Board.GetSpacePiece(verifPos).IsWhite == this.IsWhite)
+                            stopVerif[verif_i] = true;
+                    }
+                }
+            }
+
+            return possibleMoves;
+
         }
     }
 
