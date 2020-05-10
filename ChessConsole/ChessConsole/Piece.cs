@@ -33,7 +33,57 @@ namespace ChessConsole
 
         public override ArrayList GetPossibleMoves(Point pos)
         {
-            return null;
+            ArrayList possibleMoves = new ArrayList();
+            Point verifPos;
+            int nx, ny;
+            bool[] stopVerif = Enumerable.Repeat(false, 9).ToArray();
+            stopVerif[4] = true; //itself
+            int verif_i;
+
+
+            for (int i = 1; i < 8; i++)
+            {
+                for (int j = -1; j <= 1; j++)
+                {
+                    for (int k = -1; k <= 1; k++)
+                    {
+                        verif_i = (j + 1) * 3 + (k + 1);
+
+                        if (stopVerif[verif_i] == true) continue;
+
+                        nx = pos.X + (j * i);
+                        ny = pos.Y + (k * i);
+
+                        verifPos = new Point(nx, ny);
+
+                        try
+                        {
+                            Board.GetSpacePiece(verifPos);
+                        }
+                        catch (System.IndexOutOfRangeException e)
+                        {
+                            stopVerif[verif_i] = true;
+                            continue;
+                        }
+
+                        if (Board.GetSpacePiece(verifPos) == null)
+                            possibleMoves.Add(verifPos);
+                        else if (Board.GetSpacePiece(verifPos).IsWhite != this.IsWhite)
+                        {
+                            possibleMoves.Add(verifPos);
+                            stopVerif[verif_i] = true;
+                        }
+                        else if (Board.GetSpacePiece(verifPos).IsWhite == this.IsWhite)
+                            stopVerif[verif_i] = true;
+
+                    }
+                }
+
+                if (stopVerif.All(v => v == true)) break;
+            }
+
+
+            return possibleMoves;
         }
 
     }
@@ -97,7 +147,7 @@ namespace ChessConsole
             int nx, ny;
             Point nPos;
 
-            for (int i = 1; i < 7; i++)
+            for (int i = 1; i < 8; i++)
             {
                 for (int j = 0; j < 4; j++)
                 {
@@ -198,8 +248,8 @@ namespace ChessConsole
             bool[] stopVerif = Enumerable.Repeat(false, 4).ToArray();
             int verif_i;
 
-            //ew... O(n3) ... ew...
-            for (int i = 1; i < 7; i++)
+            
+            for (int i = 1; i < 8; i++)
             {
                 for (int j = -1; j <= 1; j+=2)
                 {
@@ -235,6 +285,8 @@ namespace ChessConsole
                             stopVerif[verif_i] = true;
                     }
                 }
+
+                if (stopVerif.All(v => v == true)) break;
             }
 
             return possibleMoves;
